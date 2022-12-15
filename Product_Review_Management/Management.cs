@@ -49,8 +49,20 @@ namespace Product_Review_Management
                 Console.WriteLine("Product Id : " + product.ProductID + "\tCount is : " + product.Count);
             }
             Console.WriteLine();
-
-
+        }
+        /// <summary>
+        /// Retrives the only productID and review from all records.
+        /// </summary>
+        /// <param name="review">The review.</param>
+        public void RetriveOnlyProductIdAndReviewFromAllRecords(List<ProductReview> review)
+        {
+            var recordData = (from productReviews in review select (productReviews.ProductID, productReviews.Review));
+            Console.WriteLine("************************** ProductId And Review From All Records **************************\n");
+            foreach (var product in recordData)
+            {
+                Console.WriteLine("ProductID : " + product.ProductID + " \tReview : " + product.Review);
+            }
+            Console.WriteLine();
         }
     }
 }

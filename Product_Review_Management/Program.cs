@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to Product review management problem statement\n");
+            Console.WriteLine("************************ Welcome to Product review management problem statement ************************\n");
 
             List<ProductReview> productReviewList = new List<ProductReview>()
             {
@@ -45,6 +45,7 @@
             management.TopRecords(productReviewList);
             management.SelectedRecords(productReviewList);
             management.CountOfReviewPresenForEachProductID(productReviewList);
+            management.RetriveOnlyProductIdAndReviewFromAllRecords(productReviewList);
         }
     }
 }
