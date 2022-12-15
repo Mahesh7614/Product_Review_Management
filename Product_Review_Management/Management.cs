@@ -19,7 +19,6 @@ namespace Product_Review_Management
                 Console.WriteLine("ProductID : " + product.ProductID + " UserID : " + product.UserID + " Rating : " + product.Rating + " Review : " + product.Review + " IsLike : " + product.IsLike);
             }
             Console.WriteLine();
-
         }
         /// <summary>
         /// Selecteds the records.
@@ -61,6 +60,20 @@ namespace Product_Review_Management
             foreach (var product in recordData)
             {
                 Console.WriteLine("ProductID : " + product.ProductID + " \tReview : " + product.Review);
+            }
+            Console.WriteLine();
+        }
+        /// <summary>
+        /// Skips the top five records.
+        /// </summary>
+        /// <param name="review">The review.</param>
+        public void SkipTopFiveRecords(List<ProductReview> review)
+        {
+            var recordData = (from productReviews in review orderby productReviews.Rating descending select productReviews).Skip(5);
+            Console.WriteLine("************************** Top Records Skip (5) **************************\n");
+            foreach (ProductReview product in recordData)
+            {
+                Console.WriteLine("ProductID : " + product.ProductID + " UserID : " + product.UserID + " Rating : " + product.Rating + " Review : " + product.Review + " IsLike : " + product.IsLike);
             }
             Console.WriteLine();
         }
