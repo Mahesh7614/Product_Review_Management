@@ -19,6 +19,7 @@ namespace Product_Review_Management
                 Console.WriteLine("ProductID : " + product.ProductID + " UserID : " + product.UserID + " Rating : " + product.Rating + " Review : " + product.Review + " IsLike : " + product.IsLike);
             }
             Console.WriteLine();
+
         }
         /// <summary>
         /// Selecteds the records.
@@ -32,6 +33,24 @@ namespace Product_Review_Management
             {
                 Console.WriteLine("ProductID : " + product.ProductID + " UserID : " + product.UserID + " Rating : " + product.Rating + " Review : " + product.Review + " IsLike : " + product.IsLike);
             }
+        }
+        /// <summary>
+        /// Counts the of review presen for each productID.
+        /// </summary>
+        /// <param name="review">The review.</param>
+        public void CountOfReviewPresenForEachProductID(List<ProductReview> review)
+        {
+            //var recordData = review.GroupBy(u => u.ProductID).Select(u => new { ProductID = u.Key, Count = u.Count() });
+            var recordData = (from productReviews in review group productReviews by productReviews.ProductID into product select new { ProductID = product.Key, Count = product.Count() });
+
+            Console.WriteLine("************************** Count Of Review Presen For Each ProductID **************************\n");
+            foreach (var product in recordData)
+            {
+                Console.WriteLine("Product Id : " + product.ProductID + "\tCount is : " + product.Count);
+            }
+            Console.WriteLine();
+
+
         }
     }
 }
