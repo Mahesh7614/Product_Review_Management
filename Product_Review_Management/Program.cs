@@ -48,6 +48,7 @@
             management.SkipTopFiveRecords(productReviewList);
             management.CreateProductReviewTable(productReviewList);
             management.AverageRatingForEachProductID(productReviewList);
+            management.Retrive_AllRecords_FromList_Whose_Review_Contains_nice(productReviewList);
         }
     }
 }

@@ -69,7 +69,7 @@ namespace Product_Review_Management
         public void SkipTopFiveRecords(List<ProductReview> review)
         {
             List<ProductReview> recordData = (from productReviews in review orderby productReviews.Rating descending select productReviews).Skip(5).ToList();
-            Console.WriteLine("************************** Top Records Skip (5) **************************\n");
+            Console.WriteLine("\n************************** Top Records Skip (5) **************************\n");
             foreach (ProductReview product in recordData)
             {
                 Console.WriteLine("ProductID : " + product.ProductID + " UserID : " + product.UserID + " Rating : " + product.Rating + " Review : " + product.Review + " IsLike : " + product.IsLike);
@@ -108,6 +108,15 @@ namespace Product_Review_Management
             foreach (var product in recordData)
             {
                 Console.WriteLine("ProductID : " + product.ProductID + " \tAvergae Rating : " + product.AverageRating);
+            }
+        }
+        public void Retrive_AllRecords_FromList_Whose_Review_Contains_nice(List<ProductReview> review)
+        {
+            var recordData = (from productReviews in review where productReviews.Review.Contains("nice") select productReviews);
+            Console.WriteLine("\n************************** All Records From List Whose Review Contains 'nice' **************************\n");
+            foreach (ProductReview product in recordData)
+            {
+                Console.WriteLine("ProductID : " + product.ProductID + " UserID : " + product.UserID + " Rating : " + product.Rating + " Review : " + product.Review + " IsLike : " + product.IsLike);
             }
         }
     }
