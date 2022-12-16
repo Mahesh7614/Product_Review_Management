@@ -32,7 +32,13 @@
                 new ProductReview() { ProductID = 22, UserID = 17, Rating = 4.5, Review = "Good", IsLike = true },
                 new ProductReview() { ProductID = 23, UserID = 18, Rating = 4.4, Review = "Bad", IsLike = true },
                 new ProductReview() { ProductID = 25, UserID = 19, Rating = 2.8, Review = "Good", IsLike = false },
-                new ProductReview() { ProductID = 23, UserID = 17, Rating = 3, Review = "Bad", IsLike = true },
+                new ProductReview() { ProductID = 23, UserID = 17, Rating = 3.3, Review = "Bad", IsLike = true },
+                new ProductReview() { ProductID = 26, UserID = 10, Rating = 1.8, Review = "Good", IsLike = true },
+                new ProductReview() { ProductID = 28, UserID = 10, Rating = 2.7, Review = "nice", IsLike = false },
+                new ProductReview() { ProductID = 29, UserID = 10, Rating = 4.9, Review = "Bad", IsLike = true },
+                new ProductReview() { ProductID = 30, UserID = 10, Rating = 5, Review = "Good", IsLike = true },
+                new ProductReview() { ProductID = 25, UserID = 10, Rating = 4.4, Review = "nice", IsLike = false },
+                new ProductReview() { ProductID = 26, UserID = 10, Rating = 3.9, Review = "Good", IsLike = true },
 
             };
             foreach (ProductReview product in productReviewList)
@@ -49,6 +55,7 @@
             management.CreateProductReviewTable(productReviewList);
             management.AverageRatingForEachProductID(productReviewList);
             management.Retrive_AllRecords_FromList_Whose_Review_Contains_nice(productReviewList);
+            management.Retrive_AllRecords_FromList_Whose_UserID_10_And_OrderBy_Rating(productReviewList);
         }
     }
 }

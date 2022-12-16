@@ -110,10 +110,27 @@ namespace Product_Review_Management
                 Console.WriteLine("ProductID : " + product.ProductID + " \tAvergae Rating : " + product.AverageRating);
             }
         }
+        /// <summary>
+        /// All Records From List Whose Review Contains 'nice'
+        /// </summary>
+        /// <param name="review"></param>
         public void Retrive_AllRecords_FromList_Whose_Review_Contains_nice(List<ProductReview> review)
         {
             var recordData = (from productReviews in review where productReviews.Review.Contains("nice") select productReviews);
             Console.WriteLine("\n************************** All Records From List Whose Review Contains 'nice' **************************\n");
+            foreach (ProductReview product in recordData)
+            {
+                Console.WriteLine("ProductID : " + product.ProductID + " UserID : " + product.UserID + " Rating : " + product.Rating + " Review : " + product.Review + " IsLike : " + product.IsLike);
+            }
+        }
+        /// <summary>
+        /// All Records From List Whose UserId = 10 and order By Rating
+        /// </summary>
+        /// <param name="review"></param>
+        public void Retrive_AllRecords_FromList_Whose_UserID_10_And_OrderBy_Rating(List<ProductReview> review)
+        {
+            var recordData = (from productReviews in review orderby productReviews.Rating descending where productReviews.UserID == 10  select productReviews);
+            Console.WriteLine("\n************************** All Records From List Whose UserId = 10 and order By Rating **************************\n");
             foreach (ProductReview product in recordData)
             {
                 Console.WriteLine("ProductID : " + product.ProductID + " UserID : " + product.UserID + " Rating : " + product.Rating + " Review : " + product.Review + " IsLike : " + product.IsLike);
