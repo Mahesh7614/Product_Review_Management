@@ -5,7 +5,8 @@ namespace Product_Review_Management
 {
     public class Management
     {
-        public readonly DataTable dataTable = new DataTable();
+        public readonly DataTable dataTable = new DataTable("Product Review");
+
         /// <summary>
         /// Tops the records.
         /// </summary>
@@ -69,13 +70,34 @@ namespace Product_Review_Management
         /// <param name="review">The review.</param>
         public void SkipTopFiveRecords(List<ProductReview> review)
         {
-            var recordData = (from productReviews in review orderby productReviews.Rating descending select productReviews).Skip(5);
+            List<ProductReview> recordData = (from productReviews in review orderby productReviews.Rating descending select productReviews).Skip(5).ToList();
             Console.WriteLine("************************** Top Records Skip (5) **************************\n");
             foreach (ProductReview product in recordData)
             {
                 Console.WriteLine("ProductID : " + product.ProductID + " UserID : " + product.UserID + " Rating : " + product.Rating + " Review : " + product.Review + " IsLike : " + product.IsLike);
             }
             Console.WriteLine();
+        }
+        /// <summary>
+        /// Create Product Review Table
+        /// </summary>
+        /// <param name="review"></param>
+        public void CreateProductReviewTable(List<ProductReview> review)
+        {
+            dataTable.Columns.Add("ProductID", typeof(Int32));
+            dataTable.Columns.Add("UserID", typeof(Int32));
+            dataTable.Columns.Add("Rating", typeof(double));
+            dataTable.Columns.Add("Review", typeof(string));
+            dataTable.Columns.Add("IsLike", typeof(bool));
+            Console.WriteLine("************************** Data Table Product Review **************************\n");
+            foreach (ProductReview product in review)
+            {
+                dataTable.Rows.Add(product.ProductID, product.UserID, product.Rating, product.Review, product.IsLike);
+            }
+            foreach (DataRow dataRow in dataTable.Rows)
+            {
+                Console.WriteLine("ProductID : " + dataRow[0] + " UserID : " + dataRow[1] + " Rating : " + dataRow[2] + " Review : " + dataRow[3] + " IsLike : " + dataRow[4]);
+            }
         }
     }
 }

@@ -47,6 +47,7 @@
             management.CountOfReviewPresenForEachProductID(productReviewList);
             management.RetriveOnlyProductIdAndReviewFromAllRecords(productReviewList);
             management.SkipTopFiveRecords(productReviewList);
+            management.CreateProductReviewTable(productReviewList);
         }
     }
 }
