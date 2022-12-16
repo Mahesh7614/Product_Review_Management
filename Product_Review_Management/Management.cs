@@ -8,7 +8,7 @@ namespace Product_Review_Management
         public readonly DataTable dataTable = new DataTable("Product Review");
 
         /// <summary>
-        /// Tops the records.
+        /// Top records.
         /// </summary>
         /// <param name="review">The list.</param>
         public void TopRecords(List<ProductReview> review)
@@ -22,7 +22,7 @@ namespace Product_Review_Management
             Console.WriteLine();
         }
         /// <summary>
-        /// Selecteds the records.
+        /// Selected records.
         /// </summary>
         /// <param name="review">The review.</param>
         public void SelectedRecords(List<ProductReview> review)
@@ -35,7 +35,7 @@ namespace Product_Review_Management
             }
         }
         /// <summary>
-        /// Counts the of review presen for each productID.
+        /// Count of review presen for each productID.
         /// </summary>
         /// <param name="review">The review.</param>
         public void CountOfReviewPresenForEachProductID(List<ProductReview> review)
@@ -50,7 +50,7 @@ namespace Product_Review_Management
             }
         }
         /// <summary>
-        /// Retrives the only productID and review from all records UC-5 and UC-7.
+        /// Retrive only productID and review from all records UC-5 and UC-7.
         /// </summary>
         /// <param name="review">The review.</param>
         public void RetriveOnlyProductIdAndReviewFromAllRecords(List<ProductReview> review)
@@ -63,7 +63,7 @@ namespace Product_Review_Management
             }
         }
         /// <summary>
-        /// Skips the top five records.
+        /// Skip top five records.
         /// </summary>
         /// <param name="review">The review.</param>
         public void SkipTopFiveRecords(List<ProductReview> review)
