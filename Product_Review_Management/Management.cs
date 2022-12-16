@@ -14,7 +14,7 @@ namespace Product_Review_Management
         public void TopRecords(List<ProductReview> review)
         {
             var recordData = (from productReviews in review orderby productReviews.Rating descending select productReviews).Take(3);
-            Console.WriteLine("************************** Top Records **************************\n");
+            Console.WriteLine("\n************************** Top Records **************************\n");
             foreach (ProductReview product in recordData)
             {
                 Console.WriteLine("ProductID : " + product.ProductID + " UserID : " + product.UserID + " Rating : " + product.Rating + " Review : " + product.Review + " IsLike : " + product.IsLike);
@@ -28,7 +28,7 @@ namespace Product_Review_Management
         public void SelectedRecords(List<ProductReview> review)
         {
             var recordData = (from productReviews in review where productReviews.Rating > 3 && (productReviews.ProductID == 1 || productReviews.ProductID == 4 || productReviews.ProductID == 9) select productReviews);
-            Console.WriteLine("************************** Selected Records **************************\n");
+            Console.WriteLine("\n************************** Selected Records **************************\n");
             foreach (ProductReview product in recordData)
             {
                 Console.WriteLine("ProductID : " + product.ProductID + " UserID : " + product.UserID + " Rating : " + product.Rating + " Review : " + product.Review + " IsLike : " + product.IsLike);
@@ -43,12 +43,11 @@ namespace Product_Review_Management
             //var recordData = review.GroupBy(u => u.ProductID).Select(u => new { ProductID = u.Key, Count = u.Count() });
             var recordData = (from productReviews in review group productReviews by productReviews.ProductID into product select new { ProductID = product.Key, Count = product.Count() });
 
-            Console.WriteLine("************************** Count Of Review Presen For Each ProductID **************************\n");
+            Console.WriteLine("\n************************** Count Of Review Presen For Each ProductID **************************\n");
             foreach (var product in recordData)
             {
                 Console.WriteLine("Product Id : " + product.ProductID + "\tCount is : " + product.Count);
             }
-            Console.WriteLine();
         }
         /// <summary>
         /// Retrives the only productID and review from all records UC-5 and UC-7.
@@ -57,12 +56,11 @@ namespace Product_Review_Management
         public void RetriveOnlyProductIdAndReviewFromAllRecords(List<ProductReview> review)
         {
             var recordData = (from productReviews in review select (productReviews.ProductID, productReviews.Review));
-            Console.WriteLine("************************** ProductId And Review From All Records **************************\n");
+            Console.WriteLine("\n************************** ProductId And Review From All Records **************************\n");
             foreach (var product in recordData)
             {
                 Console.WriteLine("ProductID : " + product.ProductID + " \tReview : " + product.Review);
             }
-            Console.WriteLine();
         }
         /// <summary>
         /// Skips the top five records.
@@ -76,7 +74,6 @@ namespace Product_Review_Management
             {
                 Console.WriteLine("ProductID : " + product.ProductID + " UserID : " + product.UserID + " Rating : " + product.Rating + " Review : " + product.Review + " IsLike : " + product.IsLike);
             }
-            Console.WriteLine();
         }
         /// <summary>
         /// Create Product Review Table
@@ -89,7 +86,7 @@ namespace Product_Review_Management
             dataTable.Columns.Add("Rating", typeof(double));
             dataTable.Columns.Add("Review", typeof(string));
             dataTable.Columns.Add("IsLike", typeof(bool));
-            Console.WriteLine("************************** Data Table Product Review **************************\n");
+            Console.WriteLine("\n************************** Data Table Product Review **************************\n");
             foreach (ProductReview product in review)
             {
                 dataTable.Rows.Add(product.ProductID, product.UserID, product.Rating, product.Review, product.IsLike);
@@ -97,6 +94,20 @@ namespace Product_Review_Management
             foreach (DataRow dataRow in dataTable.Rows)
             {
                 Console.WriteLine("ProductID : " + dataRow[0] + " UserID : " + dataRow[1] + " Rating : " + dataRow[2] + " Review : " + dataRow[3] + " IsLike : " + dataRow[4]);
+            }
+        }
+        /// <summary>
+        /// Average Rating For Each ProductID
+        /// </summary>
+        /// <param name="review"></param>
+        public void AverageRatingForEachProductID(List<ProductReview> review)
+        {
+            var recordData = (from productReviews in review group productReviews by (productReviews.ProductID) into product select new { ProductID = product.Key, AverageRating = product.Average(Key => Key.Rating) });
+            //var recordData = (review.GroupBy(g => g.ProductID).Select(s=> new { ProductID = s.Key ,Rating = s.Average(Key => Key.Rating)}));
+            Console.WriteLine("\n************************** Average Rating For Each ProductID **************************\n");
+            foreach (var product in recordData)
+            {
+                Console.WriteLine("ProductID : " + product.ProductID + " \tAvergae Rating : " + product.AverageRating);
             }
         }
     }
